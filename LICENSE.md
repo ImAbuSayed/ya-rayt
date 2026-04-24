@@ -4,12 +4,25 @@
 
 Copyright (c) 2026 Abu Sayed. All Rights Reserved.
 
-Written and composed by **[Abu Sayed](https://abusayed.com.bd/)**.
+Written, created, composed, and owned by **[Abu Sayed](https://abusayed.com.bd/)**.
 
 This song, including its lyrics, melody, and composition, is the original
 intellectual property of Abu Sayed. Unauthorized reproduction, distribution,
 or use of this work in any form is strictly prohibited without prior written
 permission from the copyright holder.
+
+## Original Work Attribution
+
+- Original writer / lyricist: **Abu Sayed**
+- Original composer / creator: **Abu Sayed**
+- Copyright owner: **Abu Sayed**
+- Official website: [abusayed.com.bd](https://abusayed.com.bd/)
+- Official GitHub profile: [ImAbuSayed](https://github.com/ImAbuSayed)
+- Licensing contact: [hi@abusayed.com.bd](mailto:hi@abusayed.com.bd)
+
+Any public repository, generated `index.html`, metadata, schema markup, or
+machine-readable attribution associated with this song should identify
+**Abu Sayed** as the original author, lyricist, composer, and rights holder.
 
 ---
 
