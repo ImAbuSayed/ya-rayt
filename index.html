@@ -20,6 +20,11 @@
   "@context": "https://schema.org",
   "@type": "MusicComposition",
   "name": "Ya Rayt",
+  "byArtist": {
+    "@type": "Person",
+    "name": "Abu Sayed",
+    "url": "https://abusayed.com.bd"
+  },
   "composer": {
     "@type": "Person",
     "name": "Abu Sayed",
@@ -38,9 +43,11 @@
   },
   "image": "https://raw.githubusercontent.com/ImAbuSayed/abu-sayed-song-media/main/songs/ya-rayt/feature/20260424061006-ChatGPT-Image-Apr-24-2026-11_59_08-AM.png",
   "dateCreated": "2026-04-24",
+  "datePublished": "2026-04-24",
   "sameAs": [
     "https://abusayed.com.bd/projects/ya-rayt/",
-    "https://www.youtube.com/watch?v=vf4hXCQK4b4"
+    "https://www.youtube.com/watch?v=vf4hXCQK4b4",
+    "https://music.youtube.com/watch?v=vf4hXCQK4b4"
   ]
 }
     </script>
@@ -112,14 +119,48 @@
             padding: 12px 20px 0;
             flex-wrap: wrap;
         }
+        .control-btn,
         .btn-speak {
             border: 0;
             border-radius: 999px;
             padding: 12px 18px;
-            background: linear-gradient(135deg, var(--accent), #ffd699);
-            color: #142033;
             font: 700 0.95rem/1 Arial, sans-serif;
             cursor: pointer;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 46px;
+            transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+        }
+        .control-btn:hover,
+        .btn-speak:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.18);
+        }
+        .btn-speak {
+            background: linear-gradient(135deg, var(--accent), #ffd699);
+            color: #142033;
+        }
+        .control-btn {
+            color: var(--ink);
+            border: 1px solid var(--line);
+            background: rgba(255, 255, 255, 0.05);
+        }
+        .is-website {
+            background: linear-gradient(135deg, rgba(78, 205, 196, 0.22), rgba(78, 205, 196, 0.08));
+        }
+        .is-music {
+            background: linear-gradient(135deg, rgba(255, 180, 84, 0.24), rgba(255, 180, 84, 0.08));
+        }
+        .is-spotify {
+            background: linear-gradient(135deg, rgba(29, 185, 84, 0.28), rgba(29, 185, 84, 0.08));
+        }
+        .is-apple {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.18), rgba(255, 255, 255, 0.06));
+        }
+        .is-youtube {
+            background: linear-gradient(135deg, rgba(255, 0, 0, 0.3), rgba(255, 0, 0, 0.08));
         }
         .lyrics {
             padding: 28px 28px 42px;
@@ -127,6 +168,46 @@
             line-height: 1.95;
             text-align: center;
             white-space: normal;
+        }
+        .details-shell {
+            padding: 0 28px 28px;
+        }
+        .details-block + .details-block {
+            margin-top: 18px;
+        }
+        .details-title {
+            margin: 0 0 10px;
+            color: var(--accent);
+            font: 700 0.9rem/1.2 Arial, sans-serif;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            text-align: center;
+        }
+        .meta-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+            gap: 12px;
+        }
+        .meta-card {
+            padding: 14px 16px;
+            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid var(--line);
+            text-align: left;
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.03);
+        }
+        .meta-card strong {
+            display: block;
+            font: 700 1rem/1.4 Arial, sans-serif;
+            color: var(--ink);
+        }
+        .meta-label {
+            display: block;
+            margin-bottom: 6px;
+            color: var(--muted);
+            font: 600 0.78rem/1.2 Arial, sans-serif;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
         }
         footer {
             border-top: 1px solid var(--line);
@@ -191,10 +272,78 @@
             color: var(--muted);
             font: 500 0.88rem/1.6 Arial, sans-serif;
         }
+        .modal-backdrop {
+            position: fixed;
+            inset: 0;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+            background: rgba(2, 8, 18, 0.8);
+            backdrop-filter: blur(10px);
+            z-index: 999;
+        }
+        .modal-backdrop.is-open {
+            display: flex;
+        }
+        .modal-card {
+            width: min(920px, 100%);
+            background: rgba(10, 20, 38, 0.98);
+            border: 1px solid var(--line);
+            border-radius: 24px;
+            padding: 18px;
+            box-shadow: 0 26px 80px rgba(0, 0, 0, 0.45);
+            position: relative;
+        }
+        .modal-close {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            width: 40px;
+            height: 40px;
+            border: 0;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.08);
+            color: var(--ink);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        .video-frame {
+            position: relative;
+            width: 100%;
+            padding-top: 56.25%;
+            overflow: hidden;
+            border-radius: 18px;
+            background: #000;
+        }
+        .video-frame iframe {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+        .modal-actions {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 16px;
+        }
+        .modal-link {
+            text-decoration: none;
+            color: var(--ink);
+            font: 700 0.92rem/1 Arial, sans-serif;
+            padding: 11px 16px;
+            border-radius: 999px;
+            border: 1px solid var(--line);
+            background: rgba(255, 255, 255, 0.05);
+        }
         @media (max-width: 640px) {
             body { padding: 14px; }
             header { padding: 34px 20px 16px; }
-            .feature-wrap, .lyrics { padding-left: 18px; padding-right: 18px; }
+            .feature-wrap, .lyrics, .details-shell { padding-left: 18px; padding-right: 18px; }
+            .modal-backdrop { padding: 14px; }
         }
     </style>
 </head>
@@ -212,11 +361,70 @@
 
         <div class="controls">
             <button class="btn-speak" id="speakBtn"><span id="speakText">Read Aloud</span></button>
+            <a class="control-btn is-website" href="https://abusayed.com.bd/projects/ya-rayt/" target="_blank" rel="noopener noreferrer">Official Site</a>
+            <button class="control-btn is-youtube" id="youtubeModalBtn" type="button">YouTube</button>
         </div>
 
         <article class="lyrics" id="lyricText">
             يا ريت أشوفك في كل ليلة<br>قلبي ينادي والروح عليلة<br>نار المحبة في دمي تسري<br>طيفك معايا من غير ما تدري<br>तेरी निगाहों में डूब जाऊं<br>तेरे बिना अब मैं कैसे जीऊं<br>तू है धड़कन तू ही मेरा दिल<br>मिलने की है ये कैसी मंज़िल<br>Every single moment I am thinking of you<br>You&#x27;re the only one that makes the magic come true<br>Pull me a little closer into the night<br>I just want to feel you standing right by my side<br>তোমায় ছাড়া এক পলকও বাঁচে না এ প্রাণ<br>তুমি আমার স্বপ্নজুড়ে লেখা মধুর গান<br>কাছে এসে ছুঁয়ে দাও ভালোবাসার আলো<br>তোমাতেই ডুবে আছি, তোমাকেই লাগে ভালো<br>क्या है ये जादू मुझे बता दे<br>बेचैनियों को ज़रा सुला दे<br>पास आके मुझे सीने से लगा<br>तेरी बाहों में है मेरी जगह<br>দুচোখে স্বপ্ন বুনি শুধু তোমাকে পাওয়ার আশায়,<br>অপেক্ষার প্রহর কাটে গভীর ভালোবাসায়।<br>পথ চেয়ে থাকি আমি নির্জন এই পথে,<br>হাতটি কি রাখবে না আমার ওই হাতে?<br>يا حبيبي خذني بين إيديك<br>نور عيوني دايما يلاقيك<br>في سكون الليل أسمع نداك<br>كل أمنياتي أكون معاك<br>ਤੇਰੇ ਬਿਨਾ ਲੱਗਦਾ ਨਾ ਮੇਰਾ ਜੀ<br>ਦੱਸ ਦੇ ਮੈਨੂੰ ਹੁਣ ਕਰਾਂ ਮੈਂ ਕੀ<br>ਸਾਰੀ ਰਾਤ ਤੇਰਾ ਰਸਤਾ ਮੈਂ ਤੱਕਦਾ<br>ਤੇਰੇ ਬਿਨ ਹੋਰ ਕੁੱਝ ਨਹੀਂ ਮੈਂ ਮੰਗਦਾ<br>أنتِ حياتي وأنتِ غرامي<br>عشقك في قلبي زاد اهتمامي<br>لا تتركيني في نار الأشواق<br>حبك ساكن في كل الأعماق<br>डर लगता है तुम दूर ना जाओ<br>अपने करीब मुझे और बुलाओ<br>कैसी ये आग है कैसी प्यास<br>हर पल रहता है तेरा एहसास<br>يا رب احفظ هالحب لينا<br>لا تبعد عنا ولا تنسينا<br>روحي فداك يا أغلى حبيب<br>جرحي معاك دايما يطيب<br>দুচোখে স্বপ্ন বুনি শুধু তোমাকে পাওয়ার আশায়,<br>অপেক্ষার প্রহর কাটে গভীর ভালোবাসায়।<br>পথ চেয়ে থাকি আমি নির্জন এই পথে,<br>হাতটি কি রাখবে না আমার ওই হাতে?<br>ਤੂੰ ਹੀ ਮੇਰਾ ਇਸ਼ਕ ਤੇ ਤੂੰ ਹੀ ਮੇਰੀ ਜਾਨ<br>ਤੇਰੇ ਉੱਤੇ ਵਾਰਾਂ ਮੈਂ ਸਾਰਾ ਜਹਾਨ<br>ਮੇਰੀਆਂ ਅੱਖੀਆਂ ਦਾ ਤੂੰ ਹੀ ਹੈ ਨੂਰ<br>ਤੇਰੇ ਬਿਨਾ ਮੇਰਾ ਦਿਲ ਹੈ ਮਜਬੂਰ<br>Deep into the shadows where our bodies ignite<br>Lost inside the rhythm in the heat of the night<br>Every single heartbeat is a whispering flame<br>Echoing desire that is calling your name<br>Even in the silence... Sayed you&#x27;ll hear..... Sayed... Sayed.....<br>Hold onto the feeling as the morning draws near<br>तू ही मेरी हसरत तू ही मेरी जान<br>तेरे लिए छोड़ दूं मैं ये जहान<br>मेरी हर धड़कन पे है तेरा नाम<br>तुझसे शुरू है मेरा हर मुकाम<br>يا حبيبي لا تغيب عن عيني<br>حبك هو اللي محتويني<br>في سكوتي وفي كلامي<br>أنت مسك الختام يا غرامي
         </article>
+
+
+        <section class="details-shell">
+            <div class="details-block">
+                <div class="details-title">Song Timeline</div>
+                <div class="meta-grid">
+                    
+                <div class="meta-card">
+                    <span class="meta-label">Lyric Written</span>
+                    <strong>April 24, 2026</strong>
+                </div>
+                
+                <div class="meta-card">
+                    <span class="meta-label">Music Created</span>
+                    <strong>April 24, 2026</strong>
+                </div>
+                
+                <div class="meta-card">
+                    <span class="meta-label">Official Release</span>
+                    <strong>April 24, 2026</strong>
+                </div>
+                
+                </div>
+            </div>
+            <div class="details-block">
+                <div class="details-title">Song Attribution</div>
+                <div class="meta-grid">
+                    
+            <div class="meta-card">
+                <span class="meta-label">Artist</span>
+                <strong>Abu Sayed</strong>
+            </div>
+            
+            <div class="meta-card">
+                <span class="meta-label">Composer</span>
+                <strong>Abu Sayed</strong>
+            </div>
+            
+            <div class="meta-card">
+                <span class="meta-label">Lyricist</span>
+                <strong>Abu Sayed</strong>
+            </div>
+            
+            <div class="meta-card">
+                <span class="meta-label">Publisher</span>
+                <strong>Abu Sayed Music</strong>
+            </div>
+            
+                </div>
+            </div>
+            <div style="text-align: center;">
+                <div class="copyright-attribution-profile-card">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQvEV_0J1Bu0dhUhOUIO0jW6C1QudSf71LJUw3E6pv6lQkQmGWrGORMJHTcs8pug_PyMbptFe2om4_PvqMqzEbpVCL3XnL89rAXYSnlJw&s=10" alt="Singer Abu Sayed">
+                    <span>This work is the original intellectual property of <a href="https://share.google/dCPBs3CuKCfjM4zZf" target="_blank" rel="noopener">Abu Sayed</a></span>
+                </div>
+            </div>
+        </section>
 
         <footer>
             <div class="link-grid">
@@ -233,19 +441,31 @@
                 <a href="https://github.com/ImAbuSayed/ya-rayt" target="_blank" rel="noopener noreferrer">Source Repository</a>
                 <a href="https://github.com/ImAbuSayed/ya-rayt/blob/main/LICENSE.md" target="_blank" rel="noopener noreferrer">License</a>
             </div>
-
-            <div style="text-align: center;">
-                <div class="copyright-attribution-profile-card">
-                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQvEV_0J1Bu0dhUhOUIO0jW6C1QudSf71LJUw3E6pv6lQkQmGWrGORMJHTcs8pug_PyMbptFe2om4_PvqMqzEbpVCL3XnL89rAXYSnlJw&s=10" alt="Singer Abu Sayed">
-                    <span>This work is the original intellectual property of <a href="https://share.google/dCPBs3CuKCfjM4zZf" target="_blank" rel="noopener">Abu Sayed</a></span>
-                </div>
-            </div>
-
             <div class="copyright">
                 Copyright &copy; 2026 Abu Sayed. All rights reserved.
             </div>
         </footer>
     </div>
+
+    <div class="modal-backdrop" id="youtubeModal" aria-hidden="true">
+        <div class="modal-card" role="dialog" aria-modal="true" aria-label="YouTube video player">
+            <button class="modal-close" id="youtubeModalClose" type="button" aria-label="Close video">&times;</button>
+            <div class="video-frame">
+                <iframe
+                    id="youtubeFrame"
+                    src=""
+                    title="Ya Rayt YouTube Video"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen
+                ></iframe>
+            </div>
+            <div class="modal-actions">
+                <a class="modal-link" href="https://www.youtube.com/watch?v=vf4hXCQK4b4" target="_blank" rel="noopener noreferrer">Open on YouTube</a>
+                <a class="modal-link" href="https://music.youtube.com/watch?v=vf4hXCQK4b4" target="_blank" rel="noopener noreferrer">Play on YouTube Music</a>
+            </div>
+        </div>
+    </div>
+
 
     <script>
         const btn = document.getElementById("speakBtn");
@@ -271,6 +491,47 @@
             speaking = true;
             label.innerText = "Stop Reading";
         };
+
+        const youtubeModal = document.getElementById("youtubeModal");
+        const youtubeModalBtn = document.getElementById("youtubeModalBtn");
+        const youtubeModalClose = document.getElementById("youtubeModalClose");
+        const youtubeFrame = document.getElementById("youtubeFrame");
+        const youtubeEmbedUrl = "https://www.youtube.com/embed/vf4hXCQK4b4?autoplay=1&rel=0";
+
+        const closeYoutubeModal = () => {
+            if (!youtubeModal || !youtubeFrame) {
+                return;
+            }
+            youtubeModal.classList.remove("is-open");
+            youtubeModal.setAttribute("aria-hidden", "true");
+            youtubeFrame.src = "";
+        };
+
+        if (youtubeModalBtn && youtubeModal && youtubeFrame) {
+            youtubeModalBtn.addEventListener("click", () => {
+                youtubeModal.classList.add("is-open");
+                youtubeModal.setAttribute("aria-hidden", "false");
+                youtubeFrame.src = youtubeEmbedUrl;
+            });
+        }
+
+        if (youtubeModalClose) {
+            youtubeModalClose.addEventListener("click", closeYoutubeModal);
+        }
+
+        if (youtubeModal) {
+            youtubeModal.addEventListener("click", (event) => {
+                if (event.target === youtubeModal) {
+                    closeYoutubeModal();
+                }
+            });
+        }
+
+        document.addEventListener("keydown", (event) => {
+            if (event.key === "Escape") {
+                closeYoutubeModal();
+            }
+        });
     </script>
 </body>
 </html>
