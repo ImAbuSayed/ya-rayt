@@ -17,6 +17,7 @@
 | Lyric Writing Date | April 24, 2026 |
 | Song Creation Date | April 24, 2026 |
 | Official Release Date | April 24, 2026 |
+| Song Page | Pending |
 | License | [View License](./LICENSE.md) |
 | Artist | Abu Sayed |
 
