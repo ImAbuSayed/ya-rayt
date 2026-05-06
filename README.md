@@ -19,6 +19,7 @@
 | Official Release Date | April 24, 2026 |
 | Song Page | [Open Song Page](https://imabusayed.github.io/ya-rayt/) |
 | License | [View License](./LICENSE.md) |
+| Get License | [Apply for Music License: Ya Rayt](https://music.abusayed.com.bd/Licensing/?https://www.youtube.com/watch?v=vf4hXCQK4b4?https://imabusayed.github.io/ya-rayt/) |
 | Artist | Abu Sayed |
 
 ---
