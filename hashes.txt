@@ -1,0 +1,10 @@
+# Cryptographic Proof of Authorship Log - Ya Rayt
+
+This log tracks the cryptographic history and versioning for the song **Ya Rayt** (ya-rayt).
+
+| Timestamp | Version | Clean SHA-256 Hash | Raw SHA-256 Hash | Backup File |
+|:----------|:--------|:-------------------|:-----------------|:------------|
+| 2026-05-09T13:07:53.249054 | `v1` | `9c6376932ef3311bce63cd9c38ca5ee9deba46749cc07b3a18f2aeab858967d4` | `867a9889c51371161e5ae6311a45619fb000765d4b6284e1e958d54d8de12037` | `2026-05-09_ya-rayt-v1.txt` |
+
+---
+*Written and Curated by Abu Sayed*
